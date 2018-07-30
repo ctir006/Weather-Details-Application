@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <script src="http://j.mp/jqymin"></script>
+</head>
+<body>
+
+<form id="frm1" action="/action_page.php">
+  Enter City Name: <input type="text" name="city"><br>
+</form> 
+
+<p>Click "Whether" to display the whether details</p>
+
+<button onclick="myFunction()">Show Whether</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("frm1");
+    var url = "http://api.openweathermap.org/data/2.5/weather?q="+x.elements[0].value+"&APPID=936f662b43be61e785b7efc65830f04c&units=metric";
+    var text="";
+    $.getJSON(
+        url,
+        function foo(data)
+        {
+            text+="Temperature: "+data.main.temp+"<br>";
+            text+="Humidity : "+data.main.humidity+"<br>";
+            text+="Pressure : "+data.main.pressure+"<br>";
+            text+="Temp-Max : "+data.main.temp_max+"<br>";
+            text+="Temp-Min : "+data.main.temp_min+"<br>";
+            document.getElementById("demo").innerHTML = text;
+        }
+      )
+}
+</script>
+
+</body>
+</html>
